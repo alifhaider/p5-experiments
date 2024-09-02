@@ -1,7 +1,7 @@
 let grid;
-const WIDTH = 400;
-const HEIGHT = 400;
-const TILE_SIZE = 20;
+const WIDTH = 800;
+const HEIGHT = 800;
+const TILE_SIZE = 10;
 const rows = HEIGHT / TILE_SIZE;
 const cols = WIDTH / TILE_SIZE;
 
@@ -20,6 +20,15 @@ function create2DArray(rows, cols) {
 function setup() {
   grid = create2DArray(rows, cols);
   createCanvas(WIDTH, HEIGHT);
+
+  let button = createButton("Start again");
+  button.position(0, HEIGHT + 10);
+
+  button.mousePressed(reDraw);
+}
+
+function reDraw() {
+  grid = create2DArray(rows, cols);
 }
 
 function draw() {
@@ -52,6 +61,7 @@ function draw() {
   }
   grid = next;
 }
+
 function countNeighbors(grid, x, y) {
   let sum = 0;
   for (let i = -1; i < 2; i++) {
