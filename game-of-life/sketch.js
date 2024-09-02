@@ -5,8 +5,9 @@ const TILE_SIZE = 20;
 const rows = HEIGHT / TILE_SIZE;
 const cols = WIDTH / TILE_SIZE;
 
+// creates a 2D array with random [0 or 1]
 function create2DArray(rows, cols) {
-  const arr = new Array(rows);
+  let arr = new Array(rows);
   for (let i = 0; i < rows; i++) {
     arr[i] = new Array(cols);
     for (let j = 0; j < cols; j++) {
@@ -23,10 +24,11 @@ function setup() {
 
 function draw() {
   background(220);
+  // gives color
   for (let i = 0; i < rows; i++) {
     for (let j = 0; j < cols; j++) {
-      const x = j * TILE_SIZE;
-      const y = i * TILE_SIZE;
+      let x = j * TILE_SIZE;
+      let y = i * TILE_SIZE;
       if (grid[i][j] === 1) {
         fill(0);
         rect(x, y, TILE_SIZE, TILE_SIZE);
@@ -50,12 +52,8 @@ function draw() {
   }
   grid = next;
 }
-
 function countNeighbors(grid, x, y) {
   let sum = 0;
-  if (x < 0 || y < 0 || x >= rows || y >= cols) {
-    return sum;
-  }
   for (let i = -1; i < 2; i++) {
     for (let j = -1; j < 2; j++) {
       const row = (x + i + rows) % rows;
